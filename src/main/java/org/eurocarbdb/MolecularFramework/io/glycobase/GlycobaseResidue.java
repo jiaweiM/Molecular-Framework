@@ -1,14 +1,13 @@
 /**
- * 
+ *
  */
 package org.eurocarbdb.MolecularFramework.io.glycobase;
 
 /**
  * @author rene
- *
  */
-public class GlycobaseResidue
-{
+public class GlycobaseResidue {
+
     public String m_strPosition = "";
     public String m_strResidue = "";
     public int m_iLinkageParent = 0;

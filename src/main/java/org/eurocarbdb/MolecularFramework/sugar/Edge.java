@@ -1,8 +1,9 @@
 package org.eurocarbdb.MolecularFramework.sugar;
 
 
-public interface Edge
-{
-    public GlycoNode getChild();
-    public GlycoNode getParent();
+public interface Edge {
+
+    GlycoNode getChild();
+
+    GlycoNode getParent();
 }

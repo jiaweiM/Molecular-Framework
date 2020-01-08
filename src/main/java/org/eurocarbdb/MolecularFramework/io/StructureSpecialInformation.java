@@ -7,14 +7,13 @@ import org.eurocarbdb.MolecularFramework.sugar.SugarUnitRepeat;
 
 /**
  * @author rene
- *
  */
 public class StructureSpecialInformation
 {
-    public static final int SUGAR          = 0;
-    public static final int CYCLIC         = 1;
-    public static final int REPEAT         = 2;
-    
+    public static final int SUGAR = 0;
+    public static final int CYCLIC = 1;
+    public static final int REPEAT = 2;
+
     private GlycoNode m_objTargetResidue = null;
     private Linkage m_objIncomingLinkage = null;
     private int m_iType = 0;
@@ -26,9 +25,10 @@ public class StructureSpecialInformation
     private boolean m_bClosed = false;
 
     /**
-     * Cyclic 
+     * Cyclic
      */
-    public StructureSpecialInformation( GlycoNode objStart , Linkage objIncoming , StructureSpecialInformation a_objParent , GlycoGraph a_objParentUnit)
+    public StructureSpecialInformation(GlycoNode objStart, Linkage objIncoming, StructureSpecialInformation
+            a_objParent, GlycoGraph a_objParentUnit)
     {
         this.m_objTargetResidue = objStart;
         this.m_objIncomingLinkage = objIncoming;
@@ -37,11 +37,12 @@ public class StructureSpecialInformation
         this.m_objParentUnit = a_objParentUnit;
         this.m_bClosed = false;
     }
-    
+
     /**
-     * Repeat 
+     * Repeat
      */
-    public StructureSpecialInformation( GlycoNode objStart , Linkage objIncoming, int iRepeat , SugarUnitRepeat a_objRepeat , StructureSpecialInformation a_objParent , GlycoGraph a_objParentUnit )
+    public StructureSpecialInformation(GlycoNode objStart, Linkage objIncoming, int iRepeat, SugarUnitRepeat
+            a_objRepeat, StructureSpecialInformation a_objParent, GlycoGraph a_objParentUnit)
     {
         this.m_objTargetResidue = objStart;
         this.m_objIncomingLinkage = objIncoming;
@@ -57,7 +58,8 @@ public class StructureSpecialInformation
     /**
      * Repeat 2
      */
-    public StructureSpecialInformation( GlycoNode objStart , Linkage objIncoming, int iRepeatMin , int iRepeatMax , SugarUnitRepeat a_objRepeat , StructureSpecialInformation a_objParent , GlycoGraph a_objParentUnit )
+    public StructureSpecialInformation(GlycoNode objStart, Linkage objIncoming, int iRepeatMin, int iRepeatMax,
+            SugarUnitRepeat a_objRepeat, StructureSpecialInformation a_objParent, GlycoGraph a_objParentUnit)
     {
         this.m_objTargetResidue = objStart;
         this.m_objIncomingLinkage = objIncoming;
@@ -74,38 +76,38 @@ public class StructureSpecialInformation
     {
         return this.m_objTargetResidue;
     }
-    
+
     public void setTarget(GlycoNode a_objTarget)
     {
         this.m_objTargetResidue = a_objTarget;
     }
-    
+
     public Linkage getIncomingLinkage()
     {
         return this.m_objIncomingLinkage;
     }
-    
+
     public int getType()
     {
         return this.m_iType;
     }
-    
+
     public int getRepeatCountMin()
     {
-    	return this.m_iRepeatCountMin;
+        return this.m_iRepeatCountMin;
     }
 
     public int getRepeatCountMax()
     {
-    	return this.m_iRepeatCountMax;
+        return this.m_iRepeatCountMax;
     }
-    
+
 
     public SugarUnitRepeat getRepeatBlock()
     {
         return this.m_objRepeatBlock;
     }
-    
+
     public GlycoGraph getParentUnit()
     {
         return this.m_objParentUnit;
@@ -115,16 +117,16 @@ public class StructureSpecialInformation
     {
         return this.m_objParentInfo;
     }
-    
+
     public boolean isClosed()
     {
-    	return this.m_bClosed;
+        return this.m_bClosed;
     }
-    
+
     public void close()
     {
-    	this.m_bClosed = true;	
+        this.m_bClosed = true;
     }
-    
-    
+
+
 }

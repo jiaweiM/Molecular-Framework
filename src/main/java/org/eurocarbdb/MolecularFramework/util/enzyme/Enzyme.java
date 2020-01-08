@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.eurocarbdb.MolecularFramework.util.enzyme;
 
 import org.eurocarbdb.MolecularFramework.sugar.Sugar;

@@ -1,16 +1,10 @@
 package org.eurocarbdb.MolecularFramework.io.GlycoCT;
 
 
-import java.util.ArrayList;
-
 import org.eurocarbdb.MolecularFramework.io.SugarImporterException;
-import org.eurocarbdb.MolecularFramework.sugar.Anomer;
-import org.eurocarbdb.MolecularFramework.sugar.BaseType;
-import org.eurocarbdb.MolecularFramework.sugar.GlycoconjugateException;
-import org.eurocarbdb.MolecularFramework.sugar.Modification;
-import org.eurocarbdb.MolecularFramework.sugar.ModificationType;
-import org.eurocarbdb.MolecularFramework.sugar.Monosaccharide;
-import org.eurocarbdb.MolecularFramework.sugar.Superclass;
+import org.eurocarbdb.MolecularFramework.sugar.*;
+
+import java.util.ArrayList;
 
 /**
  * residue              ::= "b" ":" <anomer> "-" <config> "-" <superclass> "-" <ring_start> ":" <ring_end>
@@ -45,7 +39,6 @@ public class BasetypeFactory
 	/**
 	 * number          ::= "0" | ( "1" | ... | "9" ) { "0" | "1" | ... | "9" }
      * @return  number to be parsed 
-	 * @throws ImportExeption 
 	 */
     private int number() throws Exception
 	{

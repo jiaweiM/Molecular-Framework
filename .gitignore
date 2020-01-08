@@ -8,3 +8,4 @@ target*
 /lib
 /logs		
 logs
+.idea/

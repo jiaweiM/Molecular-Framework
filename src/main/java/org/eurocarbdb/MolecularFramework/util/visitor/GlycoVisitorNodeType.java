@@ -14,17 +14,16 @@ import org.eurocarbdb.MolecularFramework.util.traverser.GlycoTraverser;
 
 /**
  * @author rene
- *
  */
-public class GlycoVisitorNodeType implements GlycoVisitor
-{
-    public static final int MONOSACCHARIDE      = 0;
-    public static final int NONMONOSACCHARIDE   = 1;
-    public static final int REPEAT              = 2;
-    public static final int CYCLIC				= 3;
-    public static final int SUBSTITUENT			= 4;
-    public static final int ALTERNATIVE			= 5;
-    public static final int UNVALIDATED			= 6;
+public class GlycoVisitorNodeType implements GlycoVisitor {
+
+    public static final int MONOSACCHARIDE = 0;
+    public static final int NONMONOSACCHARIDE = 1;
+    public static final int REPEAT = 2;
+    public static final int CYCLIC = 3;
+    public static final int SUBSTITUENT = 4;
+    public static final int ALTERNATIVE = 5;
+    public static final int UNVALIDATED = 6;
 
     private Monosaccharide m_objMS = null;
     private NonMonosaccharide m_objNonMS = null;
@@ -33,57 +32,39 @@ public class GlycoVisitorNodeType implements GlycoVisitor
     private SugarUnitRepeat m_objRepeat = null;
     private UnvalidatedGlycoNode m_objUnvalidated = null;
     private Substituent m_objSubstitutent = null;
-    
+
     private int m_iResidueType = -1;
-    
-    /**
-     * @see de.glycosciences.MolecularFrameWork.util.SugarVisitor#visit(de.glycosciences.MolecularFrameWork.sugar.Monosaccharide)
-     */
-    public void visit(Monosaccharide a_objMonosaccharid) throws GlycoVisitorException
-    {
-        this.m_iResidueType = GlycoVisitorNodeType.MONOSACCHARIDE;     
+
+    @Override
+    public void visit(Monosaccharide a_objMonosaccharid) throws GlycoVisitorException {
+        this.m_iResidueType = GlycoVisitorNodeType.MONOSACCHARIDE;
         this.m_objMS = a_objMonosaccharid;
     }
 
-    /**
-     * @see de.glycosciences.MolecularFrameWork.util.SugarVisitor#visit(de.glycosciences.MolecularFrameWork.sugar.NonMonosaccharide)
-     */
-    public void visit(NonMonosaccharide a_objResidue) throws GlycoVisitorException
-    {
+    @Override
+    public void visit(NonMonosaccharide a_objResidue) throws GlycoVisitorException {
         this.m_iResidueType = GlycoVisitorNodeType.NONMONOSACCHARIDE;
         this.m_objNonMS = a_objResidue;
     }
 
-    /**
-     * @see de.glycosciences.MolecularFrameWork.util.SugarVisitor#visit(de.glycosciences.MolecularFrameWork.sugar.GlycosidicLinkage)
-     */
-    public void visit(GlycoEdge a_objLinkage) throws GlycoVisitorException
-    {
+    @Override
+    public void visit(GlycoEdge a_objLinkage) throws GlycoVisitorException {
         // not a residue, nothing to do
     }
 
-    /**
-     * @see de.glycosciences.MolecularFrameWork.util.SugarVisitor#visit(de.glycosciences.MolecularFrameWork.sugar.SugarRepeatingUnit)
-     */
-    public void visit(SugarUnitRepeat a_objRepeate) throws GlycoVisitorException
-    {
+    @Override
+    public void visit(SugarUnitRepeat a_objRepeate) throws GlycoVisitorException {
         this.m_iResidueType = GlycoVisitorNodeType.REPEAT;
         this.m_objRepeat = a_objRepeate;
     }
 
-    /**
-     * @see de.glycosciences.MolecularFrameWork.util.SugarVisitor#getTraverser(de.glycosciences.MolecularFrameWork.util.SugarVisitor)
-     */
-    public GlycoTraverser getTraverser(GlycoVisitor a_objVisitor) throws GlycoVisitorException
-    {
+    @Override
+    public GlycoTraverser getTraverser(GlycoVisitor a_objVisitor) throws GlycoVisitorException {
         return null;
     }
 
-    /**
-     * @see de.glycosciences.MolecularFrameWork.util.SugarVisitor#clear()
-     */
-    public void clear()
-    {
+    @Override
+    public void clear() {
         this.m_objMS = null;
         this.m_objNonMS = null;
         this.m_objAlternative = null;
@@ -93,169 +74,113 @@ public class GlycoVisitorNodeType implements GlycoVisitor
         this.m_objSubstitutent = null;
     }
 
-	/**
-	 * @see org.eurocarbdb.MolecularFramework.util.visitor.GlycoVisitor#visit(org.eurocarbdb.MolecularFramework.sugar.Substituent)
-	 */
-	public void visit(Substituent a_objSubstituent) throws GlycoVisitorException 
-	{
-		this.m_iResidueType = GlycoVisitorNodeType.SUBSTITUENT;
-		this.m_objSubstitutent = a_objSubstituent;
-	}
+    @Override
+    public void visit(Substituent a_objSubstituent) throws GlycoVisitorException {
+        this.m_iResidueType = GlycoVisitorNodeType.SUBSTITUENT;
+        this.m_objSubstitutent = a_objSubstituent;
+    }
 
-	/**
-	 * @see org.eurocarbdb.MolecularFramework.util.visitor.GlycoVisitor#visit(org.eurocarbdb.MolecularFramework.sugar.SugarUnitCyclic)
-	 */
-	public void visit(SugarUnitCyclic a_objCyclic) throws GlycoVisitorException 
-	{
-		this.m_iResidueType = GlycoVisitorNodeType.CYCLIC;
-		this.m_objCyclic = a_objCyclic;
-	}
+    @Override
+    public void visit(SugarUnitCyclic a_objCyclic) throws GlycoVisitorException {
+        this.m_iResidueType = GlycoVisitorNodeType.CYCLIC;
+        this.m_objCyclic = a_objCyclic;
+    }
 
-	/**
-	 * @see org.eurocarbdb.MolecularFramework.util.visitor.GlycoVisitor#visit(org.eurocarbdb.MolecularFramework.sugar.SugarUnitAlternative)
-	 */
-	public void visit(SugarUnitAlternative a_objAlternative) throws GlycoVisitorException 
-	{
-		this.m_iResidueType = GlycoVisitorNodeType.ALTERNATIVE;
-		this.m_objAlternative = a_objAlternative;
-	}
+    @Override
+    public void visit(SugarUnitAlternative a_objAlternative) throws GlycoVisitorException {
+        this.m_iResidueType = GlycoVisitorNodeType.ALTERNATIVE;
+        this.m_objAlternative = a_objAlternative;
+    }
 
-	/**
-	 * @see org.eurocarbdb.MolecularFramework.util.visitor.GlycoVisitor#visit(org.eurocarbdb.MolecularFramework.sugar.UnvalidatedGlycoNode)
-	 */
-	public void visit(UnvalidatedGlycoNode a_objUnvalidated) throws GlycoVisitorException 
-	{
-		this.m_iResidueType = GlycoVisitorNodeType.UNVALIDATED;
-		this.m_objUnvalidated = a_objUnvalidated;
-	}
-	
-	public void start(Sugar a_objSugar) throws GlycoVisitorException 
-	{
-		throw new GlycoVisitorException("Cant be used with a sugar.");
-	}
+    @Override
+    public void visit(UnvalidatedGlycoNode a_objUnvalidated) throws GlycoVisitorException {
+        this.m_iResidueType = GlycoVisitorNodeType.UNVALIDATED;
+        this.m_objUnvalidated = a_objUnvalidated;
+    }
 
-	public int getNodeType(GlycoNode a_objNode) throws GlycoVisitorException
-    {
-		a_objNode.accept(this);
+    public void start(Sugar a_objSugar) throws GlycoVisitorException {
+        throw new GlycoVisitorException("Cant be used with a sugar.");
+    }
+
+    public int getNodeType(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
         return this.m_iResidueType;
     }
-    
-	public boolean isMonosaccharide(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		a_objNode.accept(this);
-		if ( this.m_iResidueType == GlycoVisitorNodeType.MONOSACCHARIDE )
-		{
-			return true;
-		}
-		return false;
-	}
 
-	public boolean isNonMonosaccharide(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		a_objNode.accept(this);
-		if ( this.m_iResidueType == GlycoVisitorNodeType.NONMONOSACCHARIDE )
-		{
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isSugarUnitRepeat(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		a_objNode.accept(this);
-		if ( this.m_iResidueType == GlycoVisitorNodeType.REPEAT )
-		{
-			return true;
-		}
-		return false;
-	}
+    public boolean isMonosaccharide(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
+        return this.m_iResidueType == GlycoVisitorNodeType.MONOSACCHARIDE;
+    }
 
-	public boolean isSugarUnitCyclic(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		a_objNode.accept(this);
-		if ( this.m_iResidueType == GlycoVisitorNodeType.CYCLIC )
-		{
-			return true;
-		}
-		return false;
-	}
+    public boolean isNonMonosaccharide(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
+        return this.m_iResidueType == GlycoVisitorNodeType.NONMONOSACCHARIDE;
+    }
 
-	public boolean isSubstituent(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		a_objNode.accept(this);
-		if ( this.m_iResidueType == GlycoVisitorNodeType.SUBSTITUENT )
-		{
-			return true;
-		}
-		return false;
-	}
+    public boolean isSugarUnitRepeat(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
+        return this.m_iResidueType == GlycoVisitorNodeType.REPEAT;
+    }
 
-	public boolean isSugarUnitAlternative(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		a_objNode.accept(this);
-		if ( this.m_iResidueType == GlycoVisitorNodeType.ALTERNATIVE )
-		{
-			return true;
-		}
-		return false;
-	}
+    public boolean isSugarUnitCyclic(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
+        return this.m_iResidueType == GlycoVisitorNodeType.CYCLIC;
+    }
 
-	public boolean isUnvalidatedNode(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		a_objNode.accept(this);
-		if ( this.m_iResidueType == GlycoVisitorNodeType.UNVALIDATED )
-		{
-			return true;
-		}
-		return false;
-	}
+    public boolean isSubstituent(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
+        return this.m_iResidueType == GlycoVisitorNodeType.SUBSTITUENT;
+    }
 
-	public Monosaccharide getMonosaccharide(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		this.clear();
-		a_objNode.accept(this);
-		return this.m_objMS;
-	}
+    public boolean isSugarUnitAlternative(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
+        return this.m_iResidueType == GlycoVisitorNodeType.ALTERNATIVE;
+    }
 
-	public NonMonosaccharide getNonMonosaccharide(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		this.clear();
-		a_objNode.accept(this);
-		return this.m_objNonMS;
-	}
-	
-	public SugarUnitRepeat getSugarUnitRepeat(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		this.clear();
-		a_objNode.accept(this);
-		return this.m_objRepeat;
-	}
+    public boolean isUnvalidatedNode(GlycoNode a_objNode) throws GlycoVisitorException {
+        a_objNode.accept(this);
+        return this.m_iResidueType == GlycoVisitorNodeType.UNVALIDATED;
+    }
 
-	public SugarUnitCyclic getSugarUnitCyclic(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		this.clear();
-		a_objNode.accept(this);
-		return this.m_objCyclic;
-	}
+    public Monosaccharide getMonosaccharide(GlycoNode a_objNode) throws GlycoVisitorException {
+        this.clear();
+        a_objNode.accept(this);
+        return this.m_objMS;
+    }
 
-	public Substituent getSubstituent(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		this.clear();
-		a_objNode.accept(this);
-		return this.m_objSubstitutent;
-	}
+    public NonMonosaccharide getNonMonosaccharide(GlycoNode a_objNode) throws GlycoVisitorException {
+        this.clear();
+        a_objNode.accept(this);
+        return this.m_objNonMS;
+    }
 
-	public SugarUnitAlternative getSugarUnitAlternative(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		this.clear();
-		a_objNode.accept(this);
-		return this.m_objAlternative;
-	}
+    public SugarUnitRepeat getSugarUnitRepeat(GlycoNode a_objNode) throws GlycoVisitorException {
+        this.clear();
+        a_objNode.accept(this);
+        return this.m_objRepeat;
+    }
 
-	public UnvalidatedGlycoNode getUnvalidatedNode(GlycoNode a_objNode)  throws GlycoVisitorException
-	{
-		this.clear();
-		a_objNode.accept(this);
-		return this.m_objUnvalidated;
-	}
+    public SugarUnitCyclic getSugarUnitCyclic(GlycoNode a_objNode) throws GlycoVisitorException {
+        this.clear();
+        a_objNode.accept(this);
+        return this.m_objCyclic;
+    }
+
+    public Substituent getSubstituent(GlycoNode a_objNode) throws GlycoVisitorException {
+        this.clear();
+        a_objNode.accept(this);
+        return this.m_objSubstitutent;
+    }
+
+    public SugarUnitAlternative getSugarUnitAlternative(GlycoNode a_objNode) throws GlycoVisitorException {
+        this.clear();
+        a_objNode.accept(this);
+        return this.m_objAlternative;
+    }
+
+    public UnvalidatedGlycoNode getUnvalidatedNode(GlycoNode a_objNode) throws GlycoVisitorException {
+        this.clear();
+        a_objNode.accept(this);
+        return this.m_objUnvalidated;
+    }
 }

@@ -19,22 +19,20 @@ public enum SequenceFormat
 
     private String m_strFullname;
 
-    private SequenceFormat( String fullname)
+    SequenceFormat(String fullname)
     {
         this.m_strFullname = fullname;
     }
 
-    public String getName() 
-    {  
-        return this.m_strFullname;  
+    public String getName()
+    {
+        return this.m_strFullname;
     }
 
-    public static SequenceFormat forName( String name ) throws SequenceFormatException
+    public static SequenceFormat forName(String name) throws SequenceFormatException
     {
-        for ( SequenceFormat a : SequenceFormat.values() )
-        {
-            if ( name.equalsIgnoreCase(a.m_strFullname) )
-            {
+        for (SequenceFormat a : SequenceFormat.values()) {
+            if (name.equalsIgnoreCase(a.m_strFullname)) {
                 return a;
             }
         }
